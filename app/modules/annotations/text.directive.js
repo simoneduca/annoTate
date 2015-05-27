@@ -65,11 +65,21 @@ function textAnnotation($rootScope, annotationsConfig, Annotations) {
         function openContextMenu(event) {
             var contextMenuData = {
                 event: event,
-                menuOptions: [{ name: 'Delete', action: ctrl.destroy }]
+                menuOptions: [{
+                        name: 'Edit',
+                        action: ctrl.transcribe
+                    },
+                    {
+                        name: 'Remove',
+                        action: ctrl.destroy
+                    }]
             };
-            if (scope.data.complete) {
-                contextMenuData.menuOptions.unshift({ name: 'Edit', action: ctrl.transcribe });
-            }
+            //            if (scope.data.complete) {
+            //                contextMenuData.menuOptions.unshift({
+            //                    name: 'Edit',
+            //                    action: ctrl.transcribe
+            //                });
+            //            }
             $rootScope.$broadcast('contextMenu:open', contextMenuData);
         }
     }

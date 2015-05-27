@@ -24,4 +24,19 @@ function subjectsFactory($q, $timeout) {
         }, 2000);
     }
 
+    //    function preloadImage(subject) {
+    //
+    //        var deferred = $q.defer();
+    //
+    //        subject.image = new Image();
+    //        //        subject.image.src = subject.locations[0]['image/jpeg'];
+    //        subject.image.url = 'images/TGA_8812_1_3_2036_1.jpg'
+    //        subject.image.onload = function () {
+    //            deferred.resolve(subject);
+    //        };
+    //
+    //        return deferred.promise;
+    //
+    //    };
+
 }

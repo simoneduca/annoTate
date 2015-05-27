@@ -25,10 +25,22 @@ function transcribeDialog($rootScope, $timeout, Annotations, hotkeys) {
         $scope.data = {};
         $scope.transcription = '';
         $scope.buttons = [
-            { name: 'Insertion', tag: 'insertion' },
-            { name: 'Deletion', tag: 'deletion' },
-            { name: 'Illegible', tag: 'illegible' },
-            { name: 'Foreign Language', tag: 'foreign' }
+            {
+                name: 'Insertion',
+                tag: 'insertion'
+            },
+            {
+                name: 'Deletion',
+                tag: 'deletion'
+            },
+            {
+                name: 'Illegible',
+                tag: 'illegible'
+            },
+            {
+                name: 'Foreign Language',
+                tag: 'foreign'
+            }
         ];
 
         var textarea = $element.find('textarea').first();
@@ -111,6 +123,7 @@ function transcribeDialog($rootScope, $timeout, Annotations, hotkeys) {
         // Methods
         function openDialog(event, data) {
             dialog.open(data);
+            console.log(data);
             positionDialog(event, data);
         }
 
