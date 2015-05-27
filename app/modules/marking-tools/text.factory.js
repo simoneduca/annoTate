@@ -44,12 +44,8 @@ function textTool($rootScope, $timeout, Annotations, toolUtils) {
 
     function _clickHandler(event) {
         if (_enabled && _isAllowedTarget(event)) {
-            var incomplete = _isLastAnnotationIncomplete();
-            if (incomplete) {
-                _endLine(event, incomplete);
-            } else {
-                _startLine(event);
-            }
+           
+                _markWord(event);
         }
     }
 
@@ -64,7 +60,7 @@ function textTool($rootScope, $timeout, Annotations, toolUtils) {
         $timeout(setEnabled);
     }
 
-    function _endLine(event, annotation) {
+    /*function _endLine(event, annotation) {
         var point = _getPoint(event);
         Annotations.upsert(_.extend(annotation, {
             complete: true,
@@ -74,7 +70,7 @@ function textTool($rootScope, $timeout, Annotations, toolUtils) {
             }
         }));
         $rootScope.$apply();
-    }
+    }*/
 
     function _getPoint(event) {
         return toolUtils.getPoint(_svg, event.srcEvent);
@@ -90,12 +86,11 @@ function textTool($rootScope, $timeout, Annotations, toolUtils) {
         return (_.isUndefined(last) || last.complete) ? false : last;
     }
 
-    function _startLine(event) {
+    function _markWord(event) {
         var point = _getPoint(event);
         Annotations.upsert({
-            type: 'text',
-            complete: false,
-            startPoint: {
+            
+            pointCoords: {
                 x: point.x,
                 y: point.y
             }
