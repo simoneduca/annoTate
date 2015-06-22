@@ -43,7 +43,7 @@ function transcribeDialog($rootScope, $timeout, Annotations, hotkeys) {
             }
         ];
 
-        var textarea = $element.find('textarea').first();
+        var inputText = $element.find('input:text').first();
 
         var vm = this;
         vm.close = closeDialog;
@@ -58,7 +58,7 @@ function transcribeDialog($rootScope, $timeout, Annotations, hotkeys) {
         }
 
         function getFocus() {
-            textarea[0].focus();
+            inputText[0].focus();
         }
 
         function openDialog(data) {
@@ -67,7 +67,7 @@ function transcribeDialog($rootScope, $timeout, Annotations, hotkeys) {
             $scope.data = data.annotation;
             $scope.transcription = data.annotation.text;
             hotkeys.add({
-                allowIn: ['TEXTAREA'],
+                allowIn: ['INPUT'],
                 callback: closeDialog,
                 combo: 'esc'
             });
@@ -85,21 +85,20 @@ function transcribeDialog($rootScope, $timeout, Annotations, hotkeys) {
         function tag(tagText) {
             var startTag = '[' + tagText + ']';
             var endTag = '[/' + tagText + ']';
-
-            var start = textarea.prop('selectionStart');
-            var end = textarea.prop('selectionEnd');
-            var text = textarea.val();
+            var start = inputText.prop('selectionStart');
+            var end = inputText.prop('selectionEnd');
+            var text = inputText.val();
             var textBefore = text.substring(0, start);
             var textInBetween;
             var textAfter;
 
             if (start === end) {
                 textAfter = text.substring(start, text.length);
-                textarea.val(textBefore + startTag + endTag + textAfter);
+                inputText.val(textBefore + startTag + endTag + textAfter);
             } else {
                 textInBetween = text.substring(start, end);
                 textAfter = text.substring(end, text.length);
-                textarea.val(textBefore + startTag + textInBetween + endTag + textAfter);
+                inputText.val(textBefore + startTag + textInBetween + endTag + textAfter);
             }
             getFocus();
         }

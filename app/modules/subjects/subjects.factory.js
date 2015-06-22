@@ -16,11 +16,7 @@ function subjectsFactory($q, $timeout) {
                     }]
         };
         subject.image = new Image();
-        subject.image.src = 'https://download.unsplash.com/photo-1428959249159-5706303ea703';
-        //subject.locations[0]['image/jpeg'];
-        //this shouldn't be hard coded
-        //subject.image.height = '2500';
-        //subject.image.width = '1900';
+        subject.image.src = subject.locations[0]['image/jpeg'];
         subject.image.onload = function () {
             deferred.resolve(subject);
         };
@@ -29,7 +25,7 @@ function subjectsFactory($q, $timeout) {
     }
 
     factory = {
-        get: preloadImage
+        get: getDummy
     };
 
     return factory;

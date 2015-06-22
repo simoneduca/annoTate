@@ -6,9 +6,9 @@ require('ng-load');
 module.exports = require('angular')
     .module('app.transcribe', [
         'ngLoad',
-
         'app.annotations',
         'app.markingTools',
         'app.overlay',
-        'app.subjects'
+        'app.subjects',
+        'app.abbreviations'
     ]);
